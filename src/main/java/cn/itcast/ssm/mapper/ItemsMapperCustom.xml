@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.ssm.mapper.ItemsMapperCustom" >
+    <!--查询商品表信息-->
+    <sql id="query_items_where">
+        <if test="itemsCustom!=null" >
+            <if test="itemsCustom.name!=null and itemsCustom.name!=''">
+                items.name LIKE '%${itemsCustom.name}%'
+            </if>
+        </if>
+    </sql>
+    <select id="finditemlist" parameterType="cn.itcast.ssm.po.ItemsVo" resultType="cn.itcast.ssm.po.ItemsCustom">
+        SELECT items.* FROM items
+        <where>
+            <include refid="query_items_where"></include>
+        </where>
+    </select>
+
+    <!-- 批量删除商品表数据 -->
+    <delete id="deleteItemsbyId" parameterType="Integer[]">
+          DELETE FROM items
+          <where>
+              items.id IN
+              <foreach collection="array" item="items_id" open="(" separator="," close=")">
+                  #{items_id}
+              </foreach>
+          </where>
+    </delete>
+
+    <!--批量修改商品信息-->
+    <update id="updateitemList" parameterType="cn.itcast.ssm.po.ItemsVo">
+       <foreach collection="itemsList" item="itemsList" separator=";">
+           update items
+           <set>
+               items.name='${itemsList.name}',price=${itemsList.price},createtime=#{itemsList.createtime,jdbcType=DATE},detail='${itemsList.detail}'
+           </set>
+           <where>
+               id = ${itemsList.id}
+           </where>
+       </foreach>
+    </update>
+</mapper>

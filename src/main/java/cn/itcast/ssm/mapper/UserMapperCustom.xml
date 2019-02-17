@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.ssm.mapper.UserMapperCustom" >
+  <select id="findUserByNameandpwd" parameterType="cn.itcast.ssm.po.User" resultType="cn.itcast.ssm.po.User">
+        select * from user
+        <where>
+            user.username = #{username} AND user.password = #{password}
+        </where>
+  </select>
+    <select id="findUserByName" parameterType="cn.itcast.ssm.po.User" resultType="cn.itcast.ssm.po.User">
+        select * from user
+        <where>
+            user.username = #{username}
+        </where>
+    </select>
+    <insert id="insertUser" parameterType="cn.itcast.ssm.po.User" >
+        insert into user (username,password)
+        values (#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
+    </insert>
+    <select id="checkUserByName" parameterType="java.lang.String" resultType="cn.itcast.ssm.po.User">
+        select * from user
+        <where>
+            user.username = #{username,jdbcType=VARCHAR}
+        </where>
+    </select>
+</mapper>
