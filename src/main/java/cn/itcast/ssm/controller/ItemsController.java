@@ -33,7 +33,6 @@ import java.util.UUID;
  * @Discription:
  */
 
-//商品controller(测试专用)
 @Controller
 public class ItemsController {
 
