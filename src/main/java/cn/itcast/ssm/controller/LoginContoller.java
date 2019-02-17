@@ -26,6 +26,7 @@ public class LoginContoller {
     @Autowired
     private UserService userService;
 
+    //你是猪吗？
     //用户登录验证
     @RequestMapping("/login")
     public String login(HttpSession httpSession, User user, Model model, HttpServletRequest request) throws Exception {
