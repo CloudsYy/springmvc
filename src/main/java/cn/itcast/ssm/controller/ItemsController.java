@@ -85,7 +85,7 @@ public class ItemsController {
             //调用service批量删除商品信息.
             itemService.deleteItemsbyId(items_id);
 
-            return "success";
+            return "success1";
         }
     }
 
@@ -134,7 +134,7 @@ public class ItemsController {
         //如果已经加入图片，进入修改，但是不重新加图片，此时的originalFilename是为空的，需要加入提交判断
         if (items_pic != null && originalFilename != null && originalFilename.length() > 0) {
             //存图片的物理路径
-            String pic_path = "D:\\apache-tomcat-6.0.43\\upload\\";
+            String pic_path = "D:\\Program Files\\Tomcat 8.5\\upload\\";
 
             //得到新的突破名称
             String newfileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -152,7 +152,7 @@ public class ItemsController {
         //调用service接口，
         itemService.updateitembyId(id, itemsCustom);
 
-        return "success";
+        return "success1";
     }
 
     @RequestMapping("/editItemsQuery")
@@ -171,7 +171,7 @@ public class ItemsController {
     public String editItemsQuerySubmit(ItemsVo itemsVo) throws Exception {
         //调用service接口，修改商品信息
         itemService.updateitemList(itemsVo);
-        return "success";
+        return "success1";
     }
 
     @RequestMapping("/addItems")
@@ -201,7 +201,7 @@ public class ItemsController {
         //如果已经加入图片，进入修改，但是不重新加图片，此时的originalFilename是为空的，需要加入提交判断
         if (items_pic != null && originalFilename != null && originalFilename.length() > 0) {
             //存图片的物理路径
-            String pic_path = "D:\\apache-tomcat-6.0.43\\upload\\";
+            String pic_path = "D:\\Program Files\\Tomcat 8.5\\upload\\";
 
             //得到新的突破名称
             String newfileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -219,7 +219,7 @@ public class ItemsController {
         //调用service接口，添加商品信息
         itemService.addItems(itemsCustom);
 
-        return "success";
+        return "success1";
     }
 
 }
